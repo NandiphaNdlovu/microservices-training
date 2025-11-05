@@ -9,6 +9,10 @@ builder.Services.AddMediatR(config =>
 {
     config.RegisterServicesFromAssembly(typeof(Program).Assembly);
 });
+builder.Services.AddMarten(opts =>
+{
+    opts.Connection(builder.Configuration.GetConnectionString("Dtatabase")!);
+}).UseLightweightSessions();
 
 var app = builder.Build();
 //configure http request pipeline
